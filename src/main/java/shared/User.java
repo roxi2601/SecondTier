@@ -1,5 +1,8 @@
 package shared;
 
+import javax.persistence.Entity;
+
+@Entity
 public class User
 {
   private int id;
@@ -7,7 +10,16 @@ public class User
   private String password;
   private int securityLevel;
 
+public User()
+{}
 
+public User(int id, String username, String password,int securityLevel)
+{
+this.id = id;
+this.password = password;
+this.username = username;
+this.securityLevel =securityLevel;
+}
 
   public int getId()
   {
