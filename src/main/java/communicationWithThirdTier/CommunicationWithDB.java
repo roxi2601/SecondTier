@@ -12,7 +12,7 @@ public class CommunicationWithDB {
             throws IOException, ClassNotFoundException {
         Scanner keyboard = new Scanner(System.in);
         while (true) {
-            Socket socket = new Socket("localhost", 5678);
+            Socket socket = new Socket("localhost", 1099);
 
             ObjectOutputStream outToServer = new ObjectOutputStream(socket.getOutputStream());
             ObjectInputStream inFromSever = new ObjectInputStream(socket.getInputStream());
