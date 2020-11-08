@@ -15,23 +15,22 @@ public class CommunicationWithDB {
             Socket socket = new Socket("localhost", 1099);
 
             ObjectOutputStream outToServer = new ObjectOutputStream(socket.getOutputStream());
-            ObjectInputStream inFromSever = new ObjectInputStream(socket.getInputStream());
+            ObjectInputStream inFromServer = new ObjectInputStream(socket.getInputStream());
 
             String connection = keyboard.nextLine();
             outToServer.writeObject(connection);
 
-
-            System.out.println((String) inFromSever.readObject());
+            System.out.println((String) inFromServer.readObject());
 
             String username = keyboard.nextLine();
             outToServer.writeObject(username);
 
-            System.out.println((String) inFromSever.readObject());
+            System.out.println((String) inFromServer.readObject());
 
             String password = keyboard.nextLine();
             outToServer.writeObject(password);
 
-            System.out.println((String) inFromSever.readObject());
+            System.out.println((String) inFromServer.readObject());
 
             socket.close();
         }
