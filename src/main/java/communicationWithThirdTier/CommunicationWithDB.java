@@ -1,58 +1,39 @@
 package communicationWithThirdTier;
 
-import com.google.gson.Gson;
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.PrintWriter;
 import java.net.Socket;
 import java.util.Scanner;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 
 public class CommunicationWithDB {
-    private Scanner input;
-    private BufferedReader in;
-    private PrintWriter out;
-    private Socket socket;
 
-    public CommunicationWithDB(String host, int port) throws IOException {
-        //Create socket and streams
-        socket = new Socket(host,port);
-    }
+    public static void main(String[] args)
+            throws IOException, ClassNotFoundException {
+        Scanner keyboard = new Scanner(System.in);
+        while (true) {
+            Socket socket = new Socket("localhost", 5678);
 
-    public void execute() throws IOException {
-        Gson gson = new Gson();
-        Scanner inFromUser = new Scanner(System.in);
-        BufferedReader inFromServer = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-        PrintWriter outToServer = new PrintWriter(socket.getOutputStream(), true);
+            ObjectOutputStream outToServer = new ObjectOutputStream(socket.getOutputStream());
+            ObjectInputStream inFromSever = new ObjectInputStream(socket.getInputStream());
 
-        //Read keyboard input
-        System.out.println("Enter your id: ");
-        String id = inFromUser.nextLine();
-        System.out.println("Enter your message: ");
-        String message = inFromUser.nextLine();
-        inFromUser.close();
+            String connection = keyboard.nextLine();
+            outToServer.writeObject(connection);
 
-        //Create message object - TODO
-        Message messageBody = new Message(message);
-        System.out.println("Client object: " + messageBody);
 
-        //Convert to Json
-        String json = gson.toJson(messageBody);
+            System.out.println((String) inFromSever.readObject());
 
-        //Send to server
-        System.out.println("Client> " + json);
-        outToServer.println(json);
+            String username = keyboard.nextLine();
+            outToServer.writeObject(username);
 
-        //Read reply from Server
-        String serverReply = inFromServer.readLine();
-        System.out.println("Server> " + serverReply);
+            System.out.println((String) inFromSever.readObject());
 
-        //Convert Message from Json
-        Message reply = gson.fromJson(serverReply,Message.class);
-        System.out.println("Message: " + reply);
-    }
+            String password = keyboard.nextLine();
+            outToServer.writeObject(password);
 
-    public void close() throws IOException {
-        socket.close();
+            System.out.println((String) inFromSever.readObject());
+
+            socket.close();
+        }
     }
 }
