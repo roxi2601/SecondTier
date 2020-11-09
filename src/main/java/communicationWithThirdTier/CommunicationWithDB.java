@@ -31,6 +31,10 @@ public class CommunicationWithDB {
                 conn = DriverManager.getConnection(dbURL, user, password);
                 if (conn != null) {
                     System.out.println("Connected to the database");
+                    /*User localUser = conn.getUserByUsername("Julia");
+                    String username = localUser.getUsername();
+                    outToServer.writeObject(username);*/
+                    System.out.println((String) inFromServer.readObject());
                 }
             } catch (ClassNotFoundException ex) {
                 System.out.println("Could not find database driver class");
@@ -42,20 +46,12 @@ public class CommunicationWithDB {
                 if (conn != null) {
                     try {
                         conn.close();
+                        socket.close();
                     } catch (SQLException ex) {
                         ex.printStackTrace();
                     }
                 }
             }
-
-            /*User localuser = conn.getUserByUsername("Julia");
-            String username = localuser.getUsername();
-            outToServer.writeObject(username);*/
-
-            System.out.println((String) inFromServer.readObject());
-
-            socket.close();
-            conn.close();
         }
     }
 }
