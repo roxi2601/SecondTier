@@ -17,13 +17,13 @@ public class UsersLogic
       User user = getUserFromDatabase(username);
       if(user==null)
       {
-       throw new UserNotFoundException("username not found");
+       throw new UserNotFoundException("Username not found");
       }
       else if(user.getPassword().equals(password))
       {
         return user;
       }
-        throw new UserNotFoundException("wrong password");
+        throw new UserNotFoundException("Wrong password");
   }
 
   public User getUserFromDatabase(String username)
