@@ -1,20 +1,31 @@
 package logic.users;
 
 import communicationWithFirstTier.UserNotFoundException;
+import communicationWithThirdTier.Communicator;
 import communicationWithThirdTier.TemporaryDatabase;
 import shared.User;
 import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
+import java.io.IOException;
+
 public class UsersLogic
 {
-   TemporaryDatabase db = new TemporaryDatabase();
-  public UsersLogic()
+  //TemporaryDatabase db  = new TemporaryDatabase();
+   Communicator communicator= Communicator.getInstance();
+  public UsersLogic() throws Exception
   {
   }
 
   public User login(String username, String password)
   {
-      User user = getUserFromDatabase(username);
+    User user = null;
+    try{
+      user = getUserFromDatabase(username);
+    }catch (Exception e)
+    {
+      e.printStackTrace();
+    }
+
       if(user==null)
       {
        throw new UserNotFoundException("Username not found");
@@ -27,8 +38,9 @@ public class UsersLogic
   }
 
   public User getUserFromDatabase(String username)
+      throws IOException, ClassNotFoundException
   {
-    //here it asks some class from 'communicationWithThirdTier' for the user giving username as argument
-    return db.getUserByUsername(username);
+
+    return communicator.getUserFromDatabase(username);
   }
 }
