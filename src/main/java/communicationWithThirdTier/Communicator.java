@@ -40,10 +40,13 @@ public class Communicator
     outToServer.writeObject(request);
     DTO dto = (DTO)inFromServer.readObject();
     User user = new User();
-    user.setId(dto.getId());
-    user.setPassword(dto.getPassword());
-    user.setUsername(dto.getUserName());
-    user.setSecurityLevel(dto.getSecurityLevel());
-    return user;
+    if(dto!=null){
+      user.setId(dto.getId());
+      user.setPassword(dto.getPassword());
+      user.setUsername(dto.getUserName());
+      user.setSecurityLevel(dto.getSecurityLevel());
+      return user;
+    }
+    return null;
   }
 }
