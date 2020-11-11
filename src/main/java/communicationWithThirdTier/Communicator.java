@@ -7,6 +7,7 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
+import java.net.SocketException;
 
 public class Communicator
 {
@@ -24,8 +25,9 @@ public class Communicator
     return instance;
   }
 
-  public Communicator() throws IOException
+  private Communicator() throws IOException
   {
+
       Socket socket = new Socket("localhost", 1098);
 
       outToServer = new ObjectOutputStream(socket.getOutputStream());
@@ -34,7 +36,7 @@ public class Communicator
   }
 
   public User getUserFromDatabase(String username)
-      throws IOException, ClassNotFoundException
+      throws IOException, ClassNotFoundException, SocketException
   {
     Request request = new Request("getUser",username);
     outToServer.writeObject(request);

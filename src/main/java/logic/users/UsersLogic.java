@@ -2,15 +2,13 @@ package logic.users;
 
 import communicationWithFirstTier.UserNotFoundException;
 import communicationWithThirdTier.Communicator;
-import communicationWithThirdTier.TemporaryDatabase;
 import shared.User;
-import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 import java.io.IOException;
+import java.net.SocketException;
 
 public class UsersLogic
 {
-  //TemporaryDatabase db  = new TemporaryDatabase();
    Communicator communicator= Communicator.getInstance();
   public UsersLogic() throws Exception
   {
@@ -23,7 +21,8 @@ public class UsersLogic
       user = getUserFromDatabase(username);
     }catch (Exception e)
     {
-      e.printStackTrace();
+      System.out.println(e);
+      throw new RuntimeException("Connection failed");
     }
 
       if(user==null)
@@ -38,9 +37,8 @@ public class UsersLogic
   }
 
   public User getUserFromDatabase(String username)
-      throws IOException, ClassNotFoundException
+      throws IOException, ClassNotFoundException, SocketException
   {
-
     return communicator.getUserFromDatabase(username);
   }
 }
