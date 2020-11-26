@@ -1,34 +1,44 @@
 package logic.users;
 
 import communicationWithFirstTier.UserNotFoundException;
-import communicationWithThirdTier.TemporaryDatabase;
+import communicationWithThirdTier.Communicator;
 import shared.User;
-import sun.reflect.generics.reflectiveObjects.NotImplementedException;
+
+import java.io.IOException;
+import java.net.SocketException;
 
 public class UsersLogic
 {
-   TemporaryDatabase db = new TemporaryDatabase();
-  public UsersLogic()
+   Communicator communicator= Communicator.getInstance();
+  public UsersLogic() throws Exception
   {
   }
 
   public User login(String username, String password)
   {
-      User user = getUserFromDatabase(username);
+    User user = null;
+    try{
+      user = getUserFromDatabase(username);
+    }catch (Exception e)
+    {
+      System.out.println(e);
+      throw new RuntimeException("Connection failed");
+    }
+
       if(user==null)
       {
-       throw new UserNotFoundException("username not found");
+       throw new UserNotFoundException("Username not found");
       }
       else if(user.getPassword().equals(password))
       {
         return user;
       }
-        throw new UserNotFoundException("wrong password");
+        throw new UserNotFoundException("Wrong password");
   }
 
   public User getUserFromDatabase(String username)
+      throws IOException, ClassNotFoundException, SocketException
   {
-    //here it asks some class from 'communicationWithThirdTier' for the user giving username as argument
-    return db.getUserByUsername(username);
+    return communicator.getUserFromDatabase(username);
   }
 }
