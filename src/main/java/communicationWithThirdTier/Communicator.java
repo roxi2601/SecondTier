@@ -51,4 +51,9 @@ public class Communicator
     }
     return null;
   }
+//@// TODO: 11/27/2020
+  public User saveUserInDatabase(String username) throws IOException {
+    Request request = new Request("saveUser",username);
+    outToServer.writeObject(request);
+  }
 }
