@@ -3,6 +3,7 @@ package logic.users;
 import communicationWithFirstTier.UserNotFoundException;
 import communicationWithThirdTier.Communicator;
 import shared.User;
+import shared.UserDTO;
 
 import java.io.IOException;
 import java.net.SocketException;
@@ -36,26 +37,20 @@ public class UsersLogic
         throw new UserNotFoundException("Wrong password");
   }
  // @// TODO: 11/27/2020
-  public User signUp(String username, String password, String confirmPassword, String firstName,
-                     String lastName, String description, byte[] img) throws IOException, ClassNotFoundException {
-    User user = new User();
+  public User signUp(User user) throws IOException, ClassNotFoundException {
+
     try{
-      user = getUserFromDatabase(username);
+      User userFromDatabase = getUserFromDatabase(user.getUsername());
+      if(userFromDatabase !=null)
+          return null;
     }catch (Exception e)
     {
       System.out.println(e);
       throw new RuntimeException("Connection failed");
     }
-    if (user.getUsername().equals(username))
-    {
-      System.out.println("Username already exists");
-    }
-    else if(!lastName.isEmpty() && !firstName.isEmpty() && !img.toString().isEmpty() &&
-    password.equals(confirmPassword))
-    {
-      saveUserInDatabase(username);
-    }
-    return null;
+
+      return saveUserInDatabase(user);
+
   }
   public User getUserFromDatabase(String username)
       throws IOException, ClassNotFoundException, SocketException
@@ -63,9 +58,9 @@ public class UsersLogic
     return communicator.getUserFromDatabase(username);
   }
 
-  public User saveUserInDatabase(String username)
+  public User saveUserInDatabase(User newUser)
           throws IOException, ClassNotFoundException, SocketException
   {
-    return communicator.saveUserInDatabase(username);
+    return communicator.saveUserInDatabase(newUser);
   }
 }

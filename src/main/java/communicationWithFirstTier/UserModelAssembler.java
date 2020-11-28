@@ -19,4 +19,5 @@ class UserModelAssembler implements RepresentationModelAssembler<User, EntityMod
           linkTo(methodOn(UserController.class).one(user)).withSelfRel());
 
   }
+
 }

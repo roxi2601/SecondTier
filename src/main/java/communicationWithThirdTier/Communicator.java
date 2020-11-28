@@ -1,6 +1,6 @@
 package communicationWithThirdTier;
 
-import shared.DTO;
+import shared.UserDTO;
 import shared.User;
 
 import java.io.IOException;
@@ -40,20 +40,23 @@ public class Communicator
   {
     Request request = new Request("getUser",username);
     outToServer.writeObject(request);
-    DTO dto = (DTO)inFromServer.readObject();
+    UserDTO userDto = (UserDTO)inFromServer.readObject();
     User user = new User();
-    if(dto!=null){
-      user.setId(dto.getId());
-      user.setPassword(dto.getPassword());
-      user.setUsername(dto.getUserName());
-      user.setSecurityLevel(dto.getSecurityLevel());
+    if(userDto !=null){
+      user.setId(userDto.getId());
+      user.setPassword(userDto.getPassword());
+      user.setUsername(userDto.getUserName());
+      user.setSecurityLevel(userDto.getSecurityLevel());
       return user;
     }
     return null;
   }
 //@// TODO: 11/27/2020
-  public User saveUserInDatabase(String username) throws IOException {
-    Request request = new Request("saveUser",username);
+  public User saveUserInDatabase(User newUser) throws IOException {
+
+
+    Request request = new Request("saveUser",newUser);
     outToServer.writeObject(request);
+    return newUser;
   }
 }
