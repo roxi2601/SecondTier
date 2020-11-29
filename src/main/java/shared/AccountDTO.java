@@ -27,7 +27,7 @@ public class AccountDTO implements Serializable {
         this.img = img;
     }
 
-    public AccountDTO(Account account) throws RemoteException {
+    public AccountDTO(Account account) {
         this(account.getAccountId(), account.getUsername(), account.getPassword(),
                 account.getFirstName(), account.getLastName(), account.getDescription(),
                 account.getImg(), account.getSecurityLevel());

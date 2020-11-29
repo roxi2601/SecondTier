@@ -11,6 +11,7 @@ public class AccountsLogic
     }
 
     public Account signUp(Account account)  {
+        System.out.println("accounts logic");
         Account accountFromDatabase=null;
         try{
             accountFromDatabase = getAccountFromDatabase(account.getUsername());
@@ -28,6 +29,7 @@ public class AccountsLogic
                 e.printStackTrace();
             }
         }
+        System.out.println("ooooooooo");
         return saveAccountInDatabase(account);
 
     }

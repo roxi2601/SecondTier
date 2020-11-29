@@ -1,7 +1,6 @@
 package shared;
 
 import java.io.Serializable;
-import java.rmi.RemoteException;
 
 public class UserDTO implements Serializable {
 	private static final long serialVersionUID = 1L;

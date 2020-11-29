@@ -1,17 +1,8 @@
 package communicationWithFirstTier;
-
-import logic.accounts.AccountsLogic;
 import logic.users.UsersLogic;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.hateoas.CollectionModel;
 import org.springframework.hateoas.EntityModel;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import shared.Account;
 import shared.User;
-
-import java.io.IOException;
-import java.util.List;
 
 @RestController
 public class UserController
