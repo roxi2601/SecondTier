@@ -36,27 +36,35 @@ public class Communicator
   }
 
   public User getUserFromDatabase(String username)
-      throws IOException, ClassNotFoundException, SocketException
   {
-    Request request = new Request("getUser",username);
-    outToServer.writeObject(request);
-    UserDTO userDto = (UserDTO)inFromServer.readObject();
-    User user = new User();
-    if(userDto !=null){
-      user.setId(userDto.getId());
-      user.setPassword(userDto.getPassword());
-      user.setUsername(userDto.getUserName());
-      user.setSecurityLevel(userDto.getSecurityLevel());
-      return user;
-    }
-    return null;
+    try{
+      Request request = new Request("getUser",username);
+      outToServer.writeObject(request);
+      UserDTO userDto = (UserDTO)inFromServer.readObject();
+      User user = new User();
+      if(userDto !=null){
+        user.setId(userDto.getId());
+        user.setPassword(userDto.getPassword());
+        user.setUsername(userDto.getUserName());
+        user.setSecurityLevel(userDto.getSecurityLevel());
+        return user;
+      }
+     }
+    catch(Exception e){
+      e.printStackTrace();
   }
-//@// TODO: 11/27/2020
-  public User saveUserInDatabase(User newUser) throws IOException {
+    return  null;
+  }
 
-
-    Request request = new Request("saveUser",newUser);
-    outToServer.writeObject(request);
+  public User saveUserInDatabase(User newUser){
+    try{
+      Request request = new Request("saveUser",newUser);
+      outToServer.writeObject(request);
+    }
+    catch(Exception e)
+    {
+     e.printStackTrace();
+    }
     return newUser;
   }
 }

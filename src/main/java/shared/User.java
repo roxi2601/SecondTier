@@ -10,7 +10,6 @@ public class User
   private String firstName;
   private String lastName;
   private String password;
-  private String confirmPassword;
   private String description;
   private byte[] img;
   private int securityLevel;
@@ -19,7 +18,7 @@ public User()
 {}
 
 public User(int id, String username, String password,int securityLevel, String firstName,
-            String lastName, String confirmPassword, String description, byte[] img)
+            String lastName, String description, byte[] img)
 {
 this.id = id;
 this.password = password;
@@ -27,7 +26,7 @@ this.username = username;
 this.securityLevel =securityLevel;
 this.firstName = firstName;
 this.lastName = lastName;
-this.confirmPassword = confirmPassword;
+
 this.description = description;
 this.img = img;
 }
@@ -38,10 +37,6 @@ this.img = img;
 
   public String getLastName() {
     return lastName;
-  }
-
-  public String getConfirmPassword() {
-    return confirmPassword;
   }
 
   public String getDescription() {
@@ -58,10 +53,6 @@ this.img = img;
 
   public void setLastName(String lastName) {
     this.lastName = lastName;
-  }
-
-  public void setConfirmPassword(String confirmPassword) {
-    this.confirmPassword = confirmPassword;
   }
 
   public void setDescription(String description) {

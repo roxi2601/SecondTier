@@ -30,10 +30,10 @@ public class UserController
      return assembler.toModel(loggingUser);
   }
   @PostMapping("/signUp")
-  EntityModel<User> signUp(@RequestBody User user) throws IOException, ClassNotFoundException {
+  EntityModel<User> signUp(@RequestBody User user) {
     User addedUser = logic.signUp(user);
     System.out.println("hello sign up");
-    return  assembler.toModel(addedUser);
+    return assembler.toModel(addedUser);
   }
 
 }

@@ -36,19 +36,25 @@ public class UsersLogic
       }
         throw new UserNotFoundException("Wrong password");
   }
- // @// TODO: 11/27/2020
-  public User signUp(User user) throws IOException, ClassNotFoundException {
 
+  public User signUp(User user)  {
+      User userFromDatabase=null;
     try{
-      User userFromDatabase = getUserFromDatabase(user.getUsername());
-      if(userFromDatabase !=null)
-          return null;
+      userFromDatabase = getUserFromDatabase(user.getUsername());
     }catch (Exception e)
     {
       System.out.println(e);
       throw new RuntimeException("Connection failed");
     }
 
+    if(userFromDatabase!=null)
+    {
+        try {
+            throw new Exception("Username already exists");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
       return saveUserInDatabase(user);
 
   }
@@ -59,7 +65,6 @@ public class UsersLogic
   }
 
   public User saveUserInDatabase(User newUser)
-          throws IOException, ClassNotFoundException, SocketException
   {
     return communicator.saveUserInDatabase(newUser);
   }
