@@ -1,5 +1,6 @@
 package communicationWithFirstTier;
 
+import logic.accounts.AccountsLogic;
 import logic.users.UsersLogic;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
@@ -17,5 +18,11 @@ public class WebServiceConfig
   public UsersLogic UsersLogic() throws Exception
   {
     return new UsersLogic();
+  }
+
+  @Bean
+  public AccountsLogic AccountsLogic() throws Exception
+  {
+    return new AccountsLogic();
   }
 }

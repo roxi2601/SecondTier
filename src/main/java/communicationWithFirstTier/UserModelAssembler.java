@@ -4,6 +4,7 @@ import org.springframework.hateoas.CollectionModel;
 import org.springframework.hateoas.EntityModel;
 import org.springframework.hateoas.server.RepresentationModelAssembler;
 import org.springframework.stereotype.Component;
+import shared.Account;
 import shared.User;
 
 import java.io.IOException;
@@ -17,8 +18,7 @@ class UserModelAssembler implements RepresentationModelAssembler<User, EntityMod
   @Override public EntityModel<User> toModel(User user)
   {
       return EntityModel.of(user,
-          linkTo(methodOn(UserController.class).one(user)).withSelfRel(),
-              linkTo(methodOn(UserController.class).signUp(user)).withSelfRel())
+          linkTo(methodOn(UserController.class).one(user)).withSelfRel())
       ;
 
   }

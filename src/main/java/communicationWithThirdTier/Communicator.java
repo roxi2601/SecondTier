@@ -1,5 +1,7 @@
 package communicationWithThirdTier;
 
+import shared.Account;
+import shared.AccountDTO;
 import shared.UserDTO;
 import shared.User;
 
@@ -43,9 +45,9 @@ public class Communicator
       UserDTO userDto = (UserDTO)inFromServer.readObject();
       User user = new User();
       if(userDto !=null){
-        user.setId(userDto.getId());
+        user.setUserId(userDto.getId());
         user.setPassword(userDto.getPassword());
-        user.setUsername(userDto.getUserName());
+        user.setUsername(userDto.getUsername());
         user.setSecurityLevel(userDto.getSecurityLevel());
         return user;
       }
@@ -56,15 +58,40 @@ public class Communicator
     return  null;
   }
 
-  public User saveUserInDatabase(User newUser){
+  public Account getAccountFromDatabase(String username)
+  {
     try{
-      Request request = new Request("saveUser",newUser);
+      Request request = new Request("getAccount",username);
+      outToServer.writeObject(request);
+      AccountDTO accountDto = (AccountDTO)inFromServer.readObject();
+      Account account = new Account();
+      if(accountDto !=null){
+        account.setAccountId(accountDto.getAccountId());
+        account.setPassword(accountDto.getPassword());
+        account.setUsername(accountDto.getUsername());
+        account.setSecurityLevel(accountDto.getSecurityLevel());
+        account.setFirstName(accountDto.getFirstName());
+        account.setLastName(accountDto.getLastName());
+        account.setDescription(accountDto.getDescription());
+        account.setImg(accountDto.getImg());
+        return account;
+      }
+    }
+    catch(Exception e){
+      e.printStackTrace();
+    }
+    return  null;
+  }
+
+  public Account saveAccountInDatabase(Account newAccount){
+    try{
+      Request request = new Request("saveUser",newAccount);
       outToServer.writeObject(request);
     }
     catch(Exception e)
     {
      e.printStackTrace();
     }
-    return newUser;
+    return newAccount;
   }
 }

@@ -5,67 +5,25 @@ import javax.persistence.Entity;
 @Entity
 public class User
 {
-  private int id;
+  private int userId;
   private String username;
-  private String firstName;
-  private String lastName;
   private String password;
-  private String description;
-  private byte[] img;
   private int securityLevel;
 
 public User()
 {}
 
-public User(int id, String username, String password,int securityLevel, String firstName,
-            String lastName, String description, byte[] img)
+public User(int userId, String username, String password,int securityLevel)
 {
-this.id = id;
+this.userId = userId;
 this.password = password;
 this.username = username;
 this.securityLevel =securityLevel;
-this.firstName = firstName;
-this.lastName = lastName;
-
-this.description = description;
-this.img = img;
 }
 
-  public String getFirstName() {
-    return firstName;
-  }
-
-  public String getLastName() {
-    return lastName;
-  }
-
-  public String getDescription() {
-    return description;
-  }
-
-  public byte[] getImg() {
-    return img;
-  }
-
-  public void setFirstName(String firstName) {
-    this.firstName = firstName;
-  }
-
-  public void setLastName(String lastName) {
-    this.lastName = lastName;
-  }
-
-  public void setDescription(String description) {
-    this.description = description;
-  }
-
-  public void setImg(byte[] img) {
-    this.img = img;
-  }
-
-  public int getId()
+  public int getUserId()
   {
-    return id;
+    return userId;
   }
 
   public String getUsername()
@@ -83,9 +41,9 @@ this.img = img;
     return password;
   }
 
-  public void setId(int id)
+  public void setUserId(int userId)
   {
-    this.id = id;
+    this.userId = userId;
   }
 
   public void setPassword(String password)
