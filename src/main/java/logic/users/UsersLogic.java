@@ -18,7 +18,7 @@ public class UsersLogic
   public User login(String username, String password)
   {
     System.out.println("log in");
-    User user = null;
+    User user;
     try{
       user = getUserFromDatabase(username);
     }catch (Exception e)

@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
 @ControllerAdvice
-public class UserNotFoundAdvice
+public class ExceptionAdvice
 {
   @ResponseBody
   @ExceptionHandler(UserNotFoundException.class)
@@ -18,8 +18,15 @@ public class UserNotFoundAdvice
   }
   @ResponseBody
   @ExceptionHandler(Exception.class)
-  @ResponseStatus(HttpStatus.BAD_REQUEST)
+  @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
   String exceptionHandler(Exception ex)
+  {
+    return ex.getMessage();
+  }
+  @ResponseBody
+  @ExceptionHandler(ArtworkException.class)
+  @ResponseStatus(HttpStatus.NOT_FOUND)
+  String exceptionHandler(ArtworkException ex)
   {
     return ex.getMessage();
   }
