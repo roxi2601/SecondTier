@@ -1,9 +1,10 @@
 package shared;
 
 import javax.persistence.Entity;
+import java.io.Serializable;
 
 @Entity
-public class Account {
+public class Account implements  Serializable,IAccount  {
     private int accountId;
     private String username;
     private String password;
@@ -28,6 +29,12 @@ public class Account {
         this.lastName = lastName;
         this.description = description;
         this.img = img;
+    }
+    public Account(AccountDTO accountDTO)
+    {
+        this(accountDTO.getAccountId(), accountDTO.getUsername(), accountDTO.getPassword(),accountDTO.getSecurityLevel(),
+                accountDTO.getFirstName(), accountDTO.getLastName(), accountDTO.getDescription()
+                , accountDTO.getImg());
     }
 
     public String getFirstName() {

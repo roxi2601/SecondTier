@@ -17,6 +17,7 @@ public class UsersLogic
 
   public User login(String username, String password)
   {
+    System.out.println("log in");
     User user = null;
     try{
       user = getUserFromDatabase(username);

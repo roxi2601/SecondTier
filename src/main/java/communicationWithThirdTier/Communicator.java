@@ -1,9 +1,6 @@
 package communicationWithThirdTier;
 
-import shared.Account;
-import shared.AccountDTO;
-import shared.UserDTO;
-import shared.User;
+import shared.*;
 
 import java.io.IOException;
 import java.io.ObjectInputStream;
@@ -84,14 +81,22 @@ public class Communicator
   }
 
   public Account saveAccountInDatabase(Account newAccount){
+    AccountDTO accountDto;
     try{
-      Request request = new Request("saveUser",newAccount);
+      AccountDTO dto = new AccountDTO(newAccount);
+      Request request = new Request("saveUser",dto);
       outToServer.writeObject(request);
+       accountDto = (AccountDTO)inFromServer.readObject();
+       if(accountDto==null)
+      {
+        throw new Exception("Account received from third tier is null");
+      }
+      return new Account(accountDto);
     }
     catch(Exception e)
     {
      e.printStackTrace();
     }
-    return newAccount;
+    return  null;
   }
 }

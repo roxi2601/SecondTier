@@ -1,13 +1,20 @@
 package logic.accounts;
 import communicationWithThirdTier.Communicator;
 import shared.Account;
+import shared.AccountDTO;
 
 
 public class AccountsLogic
 {
-    Communicator communicator= Communicator.getInstance();
-    public AccountsLogic() throws Exception
-    {
+    Communicator communicator= null;
+    public AccountsLogic() {
+
+        try {
+            communicator = Communicator.getInstance();
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.out.println("problem with communicator accounts login construction");
+        }
     }
 
     public Account signUp(Account account)  {
@@ -17,10 +24,10 @@ public class AccountsLogic
             accountFromDatabase = getAccountFromDatabase(account.getUsername());
         }catch (Exception e)
         {
-            System.out.println(e);
-            throw new RuntimeException("Connection failed");
-        }
+            System.out.println("Connection failed");
 
+        }
+        System.out.println("aaaaaaaaaaa");
         if(accountFromDatabase!=null)
         {
             try {

@@ -4,7 +4,7 @@ package shared;
 import java.io.Serializable;
 import java.rmi.RemoteException;
 
-public class AccountDTO implements Serializable {
+public class AccountDTO implements Serializable,IAccount {
     private static final long serialVersionUID = 1L;
     private int accountId;
     private String username;
