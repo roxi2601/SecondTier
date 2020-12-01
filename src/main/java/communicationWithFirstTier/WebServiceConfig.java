@@ -1,11 +1,13 @@
 package communicationWithFirstTier;
 
 import logic.accounts.AccountsLogic;
+import logic.offers.ArtworksLogic;
 import logic.users.UsersLogic;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
+import shared.Artwork;
 
 import java.io.IOException;
 
@@ -25,5 +27,11 @@ public class WebServiceConfig
   {
     System.out.println("web config");
     return new AccountsLogic();
+  }
+  @Bean
+  public ArtworksLogic ArtworksLogic() throws Exception
+  {
+    System.out.println("web config");
+    return new ArtworksLogic();
   }
 }

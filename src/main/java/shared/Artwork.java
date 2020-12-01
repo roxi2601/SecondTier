@@ -14,6 +14,10 @@ public class Artwork
   private int id;
   private String category;
 
+  public Artwork()
+  {
+  }
+
   public Artwork(byte[] pictureBytes, String title, String description,
       String author, int price, int userId, int id, String category)
   {

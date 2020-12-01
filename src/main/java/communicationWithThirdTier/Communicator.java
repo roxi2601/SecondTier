@@ -59,7 +59,8 @@ public class Communicator
   public Artwork saveArtworkInDb(Artwork artwork)
   {
     try{
-      Request request = new Request("saveArtwork",artwork);
+      ArtworkDTO dtoToSend = new ArtworkDTO(artwork);
+      Request request = new Request("saveArtwork",dtoToSend);
       outToServer.writeObject(request);
       ArtworkDTO dto = (ArtworkDTO)inFromServer.readObject();
       Artwork saved = new Artwork(dto);
