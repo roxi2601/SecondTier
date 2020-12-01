@@ -46,6 +46,7 @@ public class Communicator
         user.setPassword(userDto.getPassword());
         user.setUsername(userDto.getUsername());
         user.setSecurityLevel(userDto.getSecurityLevel());
+        System.out.println(user.getUserId());
         return user;
       }
 
@@ -53,6 +54,23 @@ public class Communicator
     catch(Exception e){
       e.printStackTrace();
   }
+    return  null;
+  }
+
+  public Artwork saveArtworkInDb(Artwork artwork)
+  {
+    try{
+      ArtworkDTO dtoToSend = new ArtworkDTO(artwork);
+      Request request = new Request("saveArtwork",dtoToSend);
+      outToServer.writeObject(request);
+      ArtworkDTO dto = (ArtworkDTO)inFromServer.readObject();
+      Artwork saved = new Artwork(dto);
+      if(saved.getTitle()!=null)
+        return saved;
+    }
+    catch(Exception e){
+      e.printStackTrace();
+    }
     return  null;
   }
 
