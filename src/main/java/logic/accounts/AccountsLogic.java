@@ -36,6 +36,10 @@ public class AccountsLogic
                 e.printStackTrace();
             }
         }
+        if(account.getImg()==null)
+        {
+            System.out.println("nulllllllllllllllllllll");
+        }
         System.out.println("ooooooooo");
         return saveAccountInDatabase(account);
 

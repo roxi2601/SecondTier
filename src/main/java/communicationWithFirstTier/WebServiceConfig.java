@@ -23,7 +23,6 @@ public class WebServiceConfig
   @Bean
   public AccountsLogic AccountsLogic() throws Exception
   {
-    System.out.println("web config");
     return new AccountsLogic();
   }
 }

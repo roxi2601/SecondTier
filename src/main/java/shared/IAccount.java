@@ -1,7 +1,7 @@
 package shared;
 
 public interface IAccount {
-    public int getAccountId();
+    public int getUserId();
 
     public String getUsername();
 

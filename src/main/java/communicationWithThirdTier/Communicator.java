@@ -48,6 +48,7 @@ public class Communicator
         user.setSecurityLevel(userDto.getSecurityLevel());
         return user;
       }
+
      }
     catch(Exception e){
       e.printStackTrace();
@@ -63,7 +64,7 @@ public class Communicator
       AccountDTO accountDto = (AccountDTO)inFromServer.readObject();
       Account account = new Account();
       if(accountDto !=null){
-        account.setAccountId(accountDto.getAccountId());
+        account.setUserId(accountDto.getUserId());
         account.setPassword(accountDto.getPassword());
         account.setUsername(accountDto.getUsername());
         account.setSecurityLevel(accountDto.getSecurityLevel());
