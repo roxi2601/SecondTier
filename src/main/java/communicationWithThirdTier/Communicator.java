@@ -7,6 +7,8 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
 import java.net.SocketException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Communicator
 {
@@ -57,6 +59,27 @@ public class Communicator
     return  null;
   }
 
+
+
+
+  public List<Artwork> getAllArtworks()
+  {
+    List<Artwork> artworks = new ArrayList<>();
+    try{
+      Request request = new Request("getArtworks",null);
+      outToServer.writeObject(request);
+      List<ArtworkDTO> dtos = (List<ArtworkDTO>)inFromServer.readObject();
+      for (ArtworkDTO dto :dtos)
+      {
+        artworks.add(new Artwork(dto));
+      }
+    }
+    catch (Exception e)
+    {
+      e.printStackTrace();
+    }
+    return artworks;
+  }
 
 
   public Account getAccountFromDatabase(String username)
