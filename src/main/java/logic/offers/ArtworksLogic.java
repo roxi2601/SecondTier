@@ -4,6 +4,8 @@ import communicationWithFirstTier.ArtworkException;
 import communicationWithThirdTier.Communicator;
 import shared.Artwork;
 
+import java.util.List;
+
 public class ArtworksLogic
 {
   Communicator communicator= Communicator.getInstance();
@@ -27,5 +29,16 @@ public class ArtworksLogic
       return savedArtwork;
     }
     throw new ArtworkException("Could not save offer");
+  }
+
+  public List<Artwork> getAll()
+  {
+    try{
+      return communicator.getAllArtworks();
+    }
+    catch(Exception e){
+      e.printStackTrace();
+      throw new ArtworkException("Server error");
+    }
   }
 }

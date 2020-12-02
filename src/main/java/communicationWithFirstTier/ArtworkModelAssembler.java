@@ -5,6 +5,8 @@ import org.springframework.hateoas.server.RepresentationModelAssembler;
 import org.springframework.stereotype.Component;
 import shared.Artwork;
 
+import java.util.List;
+
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
 
@@ -14,7 +16,7 @@ public class ArtworkModelAssembler implements RepresentationModelAssembler<Artwo
   @Override public EntityModel<Artwork> toModel(Artwork entity)
   {
     return EntityModel.of(entity,
-        linkTo(methodOn(ArtworkController.class).one(entity)).withSelfRel())
-        ;
+        linkTo(methodOn(ArtworkController.class).one(entity)).withSelfRel(),
+        linkTo(methodOn(ArtworkController.class).all()).withRel("artworks"));
   }
 }
