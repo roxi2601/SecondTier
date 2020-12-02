@@ -12,7 +12,7 @@ public class ExceptionAdvice
   @ResponseBody
   @ExceptionHandler(UserNotFoundException.class)
   @ResponseStatus(HttpStatus.NOT_FOUND)
-  String userNotFoundHandler(UserNotFoundException ex)
+  String UserNotFoundHandler(UserNotFoundException ex)
   {
     return  ex.getMessage();
   }
@@ -24,9 +24,23 @@ public class ExceptionAdvice
     return ex.getMessage();
   }
   @ResponseBody
+  @ExceptionHandler(RuntimeException.class)
+  @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
+  String runtimeExceptionHandler(RuntimeException ex)
+  {
+    return ex.getMessage();
+  }
+  @ResponseBody
   @ExceptionHandler(ArtworkException.class)
   @ResponseStatus(HttpStatus.NOT_FOUND)
   String exceptionHandler(ArtworkException ex)
+  {
+    return ex.getMessage();
+  }
+  @ResponseBody
+  @ExceptionHandler(AccountException.class)
+  @ResponseStatus(HttpStatus.NOT_FOUND)
+  String exceptionHandler(AccountException ex)
   {
     return ex.getMessage();
   }

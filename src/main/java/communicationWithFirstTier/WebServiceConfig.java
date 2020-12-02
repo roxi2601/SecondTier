@@ -30,7 +30,6 @@ public class WebServiceConfig
   @Bean
   public ArtworksLogic ArtworksLogic() throws Exception
   {
-    System.out.println("web config");
     return new ArtworksLogic();
   }
 }

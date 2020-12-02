@@ -6,7 +6,7 @@ import logic.accounts.AccountsLogic;
 import org.springframework.hateoas.EntityModel;
 import org.springframework.web.bind.annotation.*;
 import shared.Account;
-import shared.AccountDTO;
+
 
 
 @RestController
@@ -25,7 +25,6 @@ public class AccountController
     @PostMapping("/signUp")
     EntityModel<Account> signUp(@RequestBody Account account) {
         Account addedAccount = logic.signUp(account);
-        System.out.println("hello sign up");
         return assembler.toModel(addedAccount);
     }
 

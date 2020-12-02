@@ -12,14 +12,14 @@ public class Account implements  Serializable,IAccount  {
     private String firstName;
     private String lastName;
     private String description;
-    private byte[] img;
+    private byte[] pictureBytes;
 
 
     public Account()
     {}
 
     public Account(int userId, String username, String password,int securityLevel, String firstName,
-                String lastName, String description, byte[] img)
+                String lastName, String description, byte[] pictureBytes)
     {
         this.userId = userId;
         this.password = password;
@@ -28,13 +28,13 @@ public class Account implements  Serializable,IAccount  {
         this.firstName = firstName;
         this.lastName = lastName;
         this.description = description;
-        this.img = img;
+        this.pictureBytes = pictureBytes;
     }
     public Account(AccountDTO accountDTO)
     {
         this(accountDTO.getUserId(), accountDTO.getUsername(), accountDTO.getPassword(),accountDTO.getSecurityLevel(),
                 accountDTO.getFirstName(), accountDTO.getLastName(), accountDTO.getDescription()
-                , accountDTO.getImg());
+                , accountDTO.getPictureBytes());
     }
 
     public String getFirstName() {
@@ -49,8 +49,8 @@ public class Account implements  Serializable,IAccount  {
         return description;
     }
 
-    public byte[] getImg() {
-        return img;
+    public byte[] getPictureBytes() {
+        return pictureBytes;
     }
 
     public void setFirstName(String firstName) {
@@ -65,8 +65,8 @@ public class Account implements  Serializable,IAccount  {
         this.description = description;
     }
 
-    public void setImg(byte[] img) {
-        this.img = img;
+    public void setPictureBytes(byte[] pictureBytes) {
+        this.pictureBytes = pictureBytes;
     }
 
     public int getUserId()

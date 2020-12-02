@@ -57,22 +57,7 @@ public class Communicator
     return  null;
   }
 
-  public Artwork saveArtworkInDb(Artwork artwork)
-  {
-    try{
-      ArtworkDTO dtoToSend = new ArtworkDTO(artwork);
-      Request request = new Request("saveArtwork",dtoToSend);
-      outToServer.writeObject(request);
-      ArtworkDTO dto = (ArtworkDTO)inFromServer.readObject();
-      Artwork saved = new Artwork(dto);
-      if(saved.getTitle()!=null)
-        return saved;
-    }
-    catch(Exception e){
-      e.printStackTrace();
-    }
-    return  null;
-  }
+
 
   public Account getAccountFromDatabase(String username)
   {
@@ -89,7 +74,7 @@ public class Communicator
         account.setFirstName(accountDto.getFirstName());
         account.setLastName(accountDto.getLastName());
         account.setDescription(accountDto.getDescription());
-        account.setImg(accountDto.getImg());
+        account.setPictureBytes(accountDto.getPictureBytes());
         return account;
       }
     }
@@ -98,7 +83,22 @@ public class Communicator
     }
     return  null;
   }
-
+  public Artwork saveArtworkInDb(Artwork artwork)
+{
+  try{
+    ArtworkDTO dtoToSend = new ArtworkDTO(artwork);
+    Request request = new Request("saveArtwork",dtoToSend);
+    outToServer.writeObject(request);
+    ArtworkDTO dto = (ArtworkDTO)inFromServer.readObject();
+    Artwork saved = new Artwork(dto);
+    if(saved.getTitle()!=null)
+      return saved;
+  }
+  catch(Exception e){
+    e.printStackTrace();
+  }
+  return  null;
+}
   public Account saveAccountInDatabase(Account newAccount){
     AccountDTO accountDto;
     try{

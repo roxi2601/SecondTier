@@ -13,7 +13,7 @@ public interface IAccount {
 
     public String getDescription();
 
-    public byte[] getImg();
+    public byte[] getPictureBytes();
 
     public String getPassword();
 }
