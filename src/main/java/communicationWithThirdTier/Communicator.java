@@ -164,6 +164,7 @@ public class Communicator
       e.printStackTrace();
     }
   }
+
   public Account saveAccountInDatabase(Account newAccount){
     AccountDTO accountDto;
     try{
