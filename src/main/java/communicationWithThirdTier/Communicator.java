@@ -137,6 +137,33 @@ public class Communicator
   }
   return  null;
 }
+  public Artwork editArtwork(Artwork artwork)
+  {
+    try{
+      ArtworkDTO dtoToSend = new ArtworkDTO(artwork);
+      Request request = new Request("editArtwork",dtoToSend);
+      outToServer.writeObject(request);
+      ArtworkDTO dto = (ArtworkDTO)inFromServer.readObject();
+      Artwork saved = new Artwork(dto);
+      if(saved.getTitle()!=null)
+        return saved;
+    }
+    catch(Exception e){
+      e.printStackTrace();
+    }
+    return  null;
+  }
+  public void deleteArtwork(int id)
+  {
+    try{
+      Request request = new Request("deleteArtwork",id);
+      outToServer.writeObject(request);
+    }
+    catch (Exception e)
+    {
+      e.printStackTrace();
+    }
+  }
   public Account saveAccountInDatabase(Account newAccount){
     AccountDTO accountDto;
     try{

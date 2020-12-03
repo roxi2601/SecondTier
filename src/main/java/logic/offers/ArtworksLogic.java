@@ -30,7 +30,27 @@ public class ArtworksLogic
     }
     throw new ArtworkException("Could not save offer");
   }
+  public Artwork editArtwork(Artwork artwork)
+  {
+    Artwork editedArtwork;
+    try{
+      editedArtwork = communicator.editArtwork(artwork);
+    }
+    catch(Exception e){
+      e.printStackTrace();
+      throw new ArtworkException("Server error");
+    }
+    if(editedArtwork!= null)
+    {
+      return editedArtwork;
+    }
+    throw new ArtworkException("Could not edit offer");
+  }
 
+  public void deleteArtwork(int id)
+  {
+    communicator.deleteArtwork(id);
+  }
   public List<Artwork> getAll()
   {
     try{
@@ -57,4 +77,5 @@ public class ArtworksLogic
     }
     throw  new ArtworkException("This offer no longer exist");
   }
+
 }
