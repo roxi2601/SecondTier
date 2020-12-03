@@ -27,7 +27,13 @@ public class AccountController
         this.assembler = assembler;
     }
 
+  /*  @DeleteMapping("/accounts/{id}")
+    ResponseEntity<?> deleteAccount(@PathVariable int id) {
 
+        logic.deleteById(id);
+
+        return ResponseEntity.noContent().build();
+    }*/
    /* @PutMapping("/account/{username}")
     ResponseEntity<?> replaceAccount(@RequestBody Account newAccount, @PathVariable String username) {
 
