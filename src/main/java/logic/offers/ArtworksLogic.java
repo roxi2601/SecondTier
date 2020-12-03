@@ -41,4 +41,20 @@ public class ArtworksLogic
       throw new ArtworkException("Server error");
     }
   }
+  public Artwork get(int id)
+  {
+    Artwork artwork;
+    try{
+      artwork =  communicator.get(id);
+    }
+    catch (Exception e)
+    {
+      throw new ArtworkException("Server error, could not load this offer");
+    }
+    if(artwork!=null)
+    {
+      return artwork;
+    }
+    throw  new ArtworkException("This offer no longer exist");
+  }
 }

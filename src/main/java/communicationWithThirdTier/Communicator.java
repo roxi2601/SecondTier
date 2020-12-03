@@ -15,6 +15,7 @@ public class Communicator
   private ObjectOutputStream outToServer;
   private ObjectInputStream inFromServer;
 
+
   private static Communicator instance;
 
   public synchronized static Communicator getInstance() throws Exception
@@ -61,6 +62,24 @@ public class Communicator
 
 
 
+  public Artwork get(int id)
+  {
+    try
+    {
+      Request request = new Request("getArtwork", id);
+      outToServer.writeObject(request);
+      ArtworkDTO dto = (ArtworkDTO) inFromServer.readObject();
+      if (dto == null)
+      {
+        return  null;
+      }
+      return new Artwork(dto);
+    }
+    catch(Exception e){
+      e.printStackTrace();
+    }
+    return  null;
+  }
 
   public List<Artwork> getAllArtworks()
   {

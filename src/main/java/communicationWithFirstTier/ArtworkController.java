@@ -3,10 +3,7 @@ package communicationWithFirstTier;
 import logic.offers.ArtworksLogic;
 import org.springframework.hateoas.CollectionModel;
 import org.springframework.hateoas.EntityModel;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import shared.Artwork;
 
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
@@ -44,8 +41,14 @@ public class ArtworkController
 @GetMapping("/artworks")
 List<EntityModel<Artwork>> all()
 {
-  List<EntityModel<Artwork>> artworks = logic.getAll().stream().map(assembler::toModel).collect(
+  return logic.getAll().stream().map(assembler::toModel).collect(
       Collectors.toList());
-  return artworks;
+}
+
+@GetMapping("/artworks/{id}")
+    EntityModel<Artwork> one(@PathVariable int id)
+{
+  Artwork artwork = logic.get(id);
+  return assembler.toModel(artwork);
 }
 }
