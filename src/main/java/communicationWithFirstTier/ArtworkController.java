@@ -51,4 +51,9 @@ List<EntityModel<Artwork>> all()
   Artwork artwork = logic.get(id);
   return assembler.toModel(artwork);
 }
+@DeleteMapping("/artworks/{id}")
+  void  delete(@PathVariable int id)
+{
+  logic.deleteArtwork(id);
+}
 }
