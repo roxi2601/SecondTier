@@ -5,36 +5,36 @@ import java.io.Serializable;
 
 @Entity
 public class Account implements  Serializable,IAccount  {
-    private int accountId;
+    private int userId;
     private String username;
     private String password;
     private int securityLevel;
     private String firstName;
     private String lastName;
     private String description;
-    private byte[] img;
+    private byte[] pictureBytes;
 
 
     public Account()
     {}
 
-    public Account(int accountId, String username, String password,int securityLevel, String firstName,
-                String lastName, String description, byte[] img)
+    public Account(int userId, String username, String password,int securityLevel, String firstName,
+                String lastName, String description, byte[] pictureBytes)
     {
-        this.accountId = accountId;
+        this.userId = userId;
         this.password = password;
         this.username = username;
         this.securityLevel =securityLevel;
         this.firstName = firstName;
         this.lastName = lastName;
         this.description = description;
-        this.img = img;
+        this.pictureBytes = pictureBytes;
     }
     public Account(AccountDTO accountDTO)
     {
-        this(accountDTO.getAccountId(), accountDTO.getUsername(), accountDTO.getPassword(),accountDTO.getSecurityLevel(),
+        this(accountDTO.getUserId(), accountDTO.getUsername(), accountDTO.getPassword(),accountDTO.getSecurityLevel(),
                 accountDTO.getFirstName(), accountDTO.getLastName(), accountDTO.getDescription()
-                , accountDTO.getImg());
+                , accountDTO.getPictureBytes());
     }
 
     public String getFirstName() {
@@ -49,8 +49,8 @@ public class Account implements  Serializable,IAccount  {
         return description;
     }
 
-    public byte[] getImg() {
-        return img;
+    public byte[] getPictureBytes() {
+        return pictureBytes;
     }
 
     public void setFirstName(String firstName) {
@@ -65,13 +65,13 @@ public class Account implements  Serializable,IAccount  {
         this.description = description;
     }
 
-    public void setImg(byte[] img) {
-        this.img = img;
+    public void setPictureBytes(byte[] pictureBytes) {
+        this.pictureBytes = pictureBytes;
     }
 
-    public int getAccountId()
+    public int getUserId()
     {
-        return accountId;
+        return userId;
     }
 
     public String getUsername()
@@ -89,9 +89,9 @@ public class Account implements  Serializable,IAccount  {
         return password;
     }
 
-    public void setAccountId(int accountId)
+    public void setUserId(int userId)
     {
-        this.accountId = accountId;
+        this.userId = userId;
     }
 
     public void setPassword(String password)

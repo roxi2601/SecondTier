@@ -1,7 +1,7 @@
 package shared;
 
 public interface IAccount {
-    public int getAccountId();
+    public int getUserId();
 
     public String getUsername();
 
@@ -13,7 +13,7 @@ public interface IAccount {
 
     public String getDescription();
 
-    public byte[] getImg();
+    public byte[] getPictureBytes();
 
     public String getPassword();
 }

@@ -51,6 +51,7 @@ public class Communicator
         System.out.println(user.getUserId());
         return user;
       }
+
      }
     catch(Exception e){
       e.printStackTrace();
@@ -58,22 +59,7 @@ public class Communicator
     return  null;
   }
 
-  public Artwork saveArtworkInDb(Artwork artwork)
-  {
-    try{
-      ArtworkDTO dtoToSend = new ArtworkDTO(artwork);
-      Request request = new Request("saveArtwork",dtoToSend);
-      outToServer.writeObject(request);
-      ArtworkDTO dto = (ArtworkDTO)inFromServer.readObject();
-      Artwork saved = new Artwork(dto);
-      if(saved.getTitle()!=null)
-        return saved;
-    }
-    catch(Exception e){
-      e.printStackTrace();
-    }
-    return  null;
-  }
+
 
   public Artwork get(int id)
   {
@@ -114,6 +100,7 @@ public class Communicator
   }
 
 
+
   public Account getAccountFromDatabase(String username)
   {
     try{
@@ -122,14 +109,14 @@ public class Communicator
       AccountDTO accountDto = (AccountDTO)inFromServer.readObject();
       Account account = new Account();
       if(accountDto !=null){
-        account.setAccountId(accountDto.getAccountId());
+        account.setUserId(accountDto.getUserId());
         account.setPassword(accountDto.getPassword());
         account.setUsername(accountDto.getUsername());
         account.setSecurityLevel(accountDto.getSecurityLevel());
         account.setFirstName(accountDto.getFirstName());
         account.setLastName(accountDto.getLastName());
         account.setDescription(accountDto.getDescription());
-        account.setImg(accountDto.getImg());
+        account.setPictureBytes(accountDto.getPictureBytes());
         return account;
       }
     }
@@ -138,7 +125,22 @@ public class Communicator
     }
     return  null;
   }
-
+  public Artwork saveArtworkInDb(Artwork artwork)
+{
+  try{
+    ArtworkDTO dtoToSend = new ArtworkDTO(artwork);
+    Request request = new Request("saveArtwork",dtoToSend);
+    outToServer.writeObject(request);
+    ArtworkDTO dto = (ArtworkDTO)inFromServer.readObject();
+    Artwork saved = new Artwork(dto);
+    if(saved.getTitle()!=null)
+      return saved;
+  }
+  catch(Exception e){
+    e.printStackTrace();
+  }
+  return  null;
+}
   public Account saveAccountInDatabase(Account newAccount){
     AccountDTO accountDto;
     try{

@@ -1,7 +1,7 @@
 package logic.accounts;
+import communicationWithFirstTier.AccountException;
 import communicationWithThirdTier.Communicator;
 import shared.Account;
-import shared.AccountDTO;
 
 
 public class AccountsLogic
@@ -18,26 +18,38 @@ public class AccountsLogic
     }
 
     public Account signUp(Account account)  {
-        System.out.println("accounts logic");
         Account accountFromDatabase=null;
         try{
             accountFromDatabase = getAccountFromDatabase(account.getUsername());
         }catch (Exception e)
         {
-            System.out.println("Connection failed");
+            e.printStackTrace();
+            throw new AccountException("Connection failed");
 
         }
-        System.out.println("aaaaaaaaaaa");
-        if(accountFromDatabase!=null)
+        if(accountFromDatabase==null)
         {
-            try {
-                throw new Exception("Username already exists");
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
+            return saveAccountInDatabase(account);
         }
-        System.out.println("ooooooooo");
-        return saveAccountInDatabase(account);
+        throw new AccountException("Username already exists");
+
+    }
+    public Account updateAccount(Account account)
+    {
+        Account accountFromDatabase=null;
+        try{
+            accountFromDatabase = getAccountFromDatabase(account.getUsername());
+        }catch (Exception e)
+        {
+            e.printStackTrace();
+            throw new AccountException("Connection failed");
+
+        }
+        if(accountFromDatabase==null)
+        {
+            return saveAccountInDatabase(account);
+        }
+        throw new AccountException("Username already exists");
 
     }
     public Account getAccountFromDatabase(String username)
