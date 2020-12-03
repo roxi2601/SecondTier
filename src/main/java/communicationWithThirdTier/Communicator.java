@@ -82,6 +82,7 @@ public class Communicator
   }
 
 
+
   public Account getAccountFromDatabase(String username)
   {
     try{

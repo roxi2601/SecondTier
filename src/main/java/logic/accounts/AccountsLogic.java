@@ -34,6 +34,24 @@ public class AccountsLogic
         throw new AccountException("Username already exists");
 
     }
+    public Account updateAccount(Account account)
+    {
+        Account accountFromDatabase=null;
+        try{
+            accountFromDatabase = getAccountFromDatabase(account.getUsername());
+        }catch (Exception e)
+        {
+            e.printStackTrace();
+            throw new AccountException("Connection failed");
+
+        }
+        if(accountFromDatabase==null)
+        {
+            return saveAccountInDatabase(account);
+        }
+        throw new AccountException("Username already exists");
+
+    }
     public Account getAccountFromDatabase(String username)
     {
         return communicator.getAccountFromDatabase(username);
