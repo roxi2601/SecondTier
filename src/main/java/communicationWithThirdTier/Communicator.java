@@ -15,6 +15,7 @@ public class Communicator
   private ObjectOutputStream outToServer;
   private ObjectInputStream inFromServer;
 
+
   private static Communicator instance;
 
   public synchronized static Communicator getInstance() throws Exception
