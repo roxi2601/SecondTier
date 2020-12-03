@@ -138,21 +138,21 @@ public class Communicator
   return  null;
 }
   public Artwork editArtwork(Artwork artwork)
-  {
-    try{
-      ArtworkDTO dtoToSend = new ArtworkDTO(artwork);
-      Request request = new Request("editArtwork",dtoToSend);
-      outToServer.writeObject(request);
-      ArtworkDTO dto = (ArtworkDTO)inFromServer.readObject();
-      Artwork saved = new Artwork(dto);
-      if(saved.getTitle()!=null)
-        return saved;
-    }
-    catch(Exception e){
-      e.printStackTrace();
-    }
-    return  null;
+{
+  try{
+    ArtworkDTO dtoToSend = new ArtworkDTO(artwork);
+    Request request = new Request("editArtwork",dtoToSend);
+    outToServer.writeObject(request);
+    ArtworkDTO dto = (ArtworkDTO)inFromServer.readObject();
+    Artwork saved = new Artwork(dto);
+    if(saved.getTitle()!=null)
+      return saved;
   }
+  catch(Exception e){
+    e.printStackTrace();
+  }
+  return  null;
+}
   public void deleteArtwork(int id)
   {
     try{
@@ -183,5 +183,33 @@ public class Communicator
      e.printStackTrace();
     }
     return  null;
+  }
+
+  public Account editAccount(Account account)
+  {
+    try{
+      AccountDTO dtoToSend = new AccountDTO(account);
+      Request request = new Request("editAccount",dtoToSend);
+      outToServer.writeObject(request);
+      AccountDTO dto = (AccountDTO)inFromServer.readObject();
+      Account saved = new Account(dto);
+      if(saved.getUsername()!=null)
+        return saved;
+    }
+    catch(Exception e){
+      e.printStackTrace();
+    }
+    return  null;
+  }
+  public void deleteAccount(int userId)
+  {
+    try{
+      Request request = new Request("deleteAccount",userId);
+      outToServer.writeObject(request);
+    }
+    catch (Exception e)
+    {
+      e.printStackTrace();
+    }
   }
 }

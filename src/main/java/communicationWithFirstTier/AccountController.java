@@ -27,33 +27,12 @@ public class AccountController
         this.assembler = assembler;
     }
 
-  /*  @DeleteMapping("/accounts/{id}")
-    ResponseEntity<?> deleteAccount(@PathVariable int id) {
+    @DeleteMapping("/account/{id}")
+    void  delete(@PathVariable int userId)
+    {
+        logic.deleteAccount(userId);
+    }
 
-        logic.deleteById(id);
-
-        return ResponseEntity.noContent().build();
-    }*/
-   /* @PutMapping("/account/{username}")
-    ResponseEntity<?> replaceAccount(@RequestBody Account newAccount, @PathVariable String username) {
-
-        Account updatedAccount = logic.getAccountFromDatabase(username) //
-                .map(account -> {
-                    account.s(newEmployee.getName());
-                    employee.setRole(newEmployee.getRole());
-                    return repository.save(employee);
-                }) //
-                .orElseGet(() -> {
-                    newEmployee.setId(id);
-                    return repository.save(newEmployee);
-                });
-
-        EntityModel<Employee> entityModel = assembler.toModel(updatedEmployee);
-
-        return ResponseEntity //
-                .created(entityModel.getRequiredLink(IanaLinkRelations.SELF).toUri()) //
-                .body(entityModel);
-    }*/
     @PostMapping("/signUp")
     EntityModel<Account> signUp(@RequestBody Account account) {
         Account addedAccount = logic.signUp(account);

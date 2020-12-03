@@ -3,6 +3,9 @@ import communicationWithFirstTier.AccountException;
 import communicationWithFirstTier.ArtworkException;
 import communicationWithThirdTier.Communicator;
 import shared.Account;
+import shared.Artwork;
+
+import java.util.List;
 
 
 public class AccountsLogic
@@ -35,43 +38,28 @@ public class AccountsLogic
         throw new AccountException("Username already exists");
 
     }
-    /*public Account deleteAccount(String username)
+    public Account editAccount(Account account)
     {
-        Account accountFromDatabase=null;
+        Account editedAccount;
         try{
-            accountFromDatabase = getAccountFromDatabase(username);
-        }catch (Exception e)
-        {
+            editedAccount = communicator.editAccount(account);
+        }
+        catch(Exception e){
             e.printStackTrace();
-            throw new AccountException("Connection failed");
-
+            throw new ArtworkException("Server error");
         }
-        if(accountFromDatabase!=null)
+        if(editedAccount!= null)
         {
-            return deleteAccountFromDatabase(username);
+            return editedAccount;
         }
-        throw new AccountException("Username does not exists");
-
-    }*/
-    /*public Account updateAccount(Account account)
-    {
-        Account accountFromDatabase=null;
-        try{
-            accountFromDatabase = getAccountFromDatabase(account.getUsername());
-        }catch (Exception e)
-        {
-            e.printStackTrace();
-            throw new AccountException("Connection failed");
-
-        }
-        if(accountFromDatabase==null)
-        {
-            return saveAccountInDatabase(account);
-        }
-        throw new AccountException("Username already exists");
-
+        throw new ArtworkException("Could not edit account");
     }
-*/
+
+    public void deleteAccount(int userId)
+    {
+        communicator.deleteAccount(userId);
+    }
+
     public Account get(int userId)
     {
         Account account;
@@ -80,13 +68,13 @@ public class AccountsLogic
         }
         catch (Exception e)
         {
-            throw new ArtworkException("Server error, could not load this offer");
+            throw new AccountException("Server error, could not load this offer");
         }
         if(account!=null)
         {
             return account;
         }
-        throw  new ArtworkException("This account no longer exist");
+        throw  new AccountException("This account no longer exist");
     }
     public Account getAccountFromDatabase(int userId)
     {
