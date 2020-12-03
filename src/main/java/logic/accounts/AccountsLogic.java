@@ -1,5 +1,6 @@
 package logic.accounts;
 import communicationWithFirstTier.AccountException;
+import communicationWithFirstTier.ArtworkException;
 import communicationWithThirdTier.Communicator;
 import shared.Account;
 
@@ -18,9 +19,9 @@ public class AccountsLogic
     }
 
     public Account signUp(Account account)  {
-        Account accountFromDatabase=null;
+        Account accountFromDatabase;
         try{
-            accountFromDatabase = getAccountFromDatabase(account.getUsername());
+            accountFromDatabase = getAccountFromDatabase(account.getUserId());
         }catch (Exception e)
         {
             e.printStackTrace();
@@ -52,7 +53,7 @@ public class AccountsLogic
         throw new AccountException("Username does not exists");
 
     }*/
-    public Account updateAccount(Account account)
+    /*public Account updateAccount(Account account)
     {
         Account accountFromDatabase=null;
         try{
@@ -70,9 +71,26 @@ public class AccountsLogic
         throw new AccountException("Username already exists");
 
     }
-    public Account getAccountFromDatabase(String username)
+*/
+    public Account get(int userId)
     {
-        return communicator.getAccountFromDatabase(username);
+        Account account;
+        try{
+            account =  communicator.getAccountFromDatabase(userId);
+        }
+        catch (Exception e)
+        {
+            throw new ArtworkException("Server error, could not load this offer");
+        }
+        if(account!=null)
+        {
+            return account;
+        }
+        throw  new ArtworkException("This account no longer exist");
+    }
+    public Account getAccountFromDatabase(int userId)
+    {
+        return communicator.getAccountFromDatabase(userId);
     }
 
     public Account saveAccountInDatabase(Account newAccount)

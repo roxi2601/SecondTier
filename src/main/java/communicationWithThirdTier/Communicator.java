@@ -81,6 +81,26 @@ public class Communicator
     return  null;
   }
 
+  public Account getAccountFromDatabase(int userId)
+  {
+    try
+    {
+      Request request = new Request("getAccount", userId);
+      outToServer.writeObject(request);
+      AccountDTO dto = (AccountDTO) inFromServer.readObject();
+      if (dto == null)
+      {
+        return  null;
+      }
+      System.out.println(dto.getUserId());
+      return new Account(dto);
+    }
+    catch(Exception e){
+      e.printStackTrace();
+    }
+
+    return  null;
+  }
   public List<Artwork> getAllArtworks()
   {
     List<Artwork> artworks = new ArrayList<>();
@@ -101,32 +121,6 @@ public class Communicator
   }
 
 
-
-
-  public Account getAccountFromDatabase(String username)
-  {
-    try{
-      Request request = new Request("getAccount",username);
-      outToServer.writeObject(request);
-      AccountDTO accountDto = (AccountDTO)inFromServer.readObject();
-      Account account = new Account();
-      if(accountDto !=null){
-        account.setUserId(accountDto.getUserId());
-        account.setPassword(accountDto.getPassword());
-        account.setUsername(accountDto.getUsername());
-        account.setSecurityLevel(accountDto.getSecurityLevel());
-        account.setFirstName(accountDto.getFirstName());
-        account.setLastName(accountDto.getLastName());
-        account.setDescription(accountDto.getDescription());
-        account.setPictureBytes(accountDto.getPictureBytes());
-        return account;
-      }
-    }
-    catch(Exception e){
-      e.printStackTrace();
-    }
-    return  null;
-  }
   public Artwork saveArtworkInDb(Artwork artwork)
 {
   try{

@@ -57,13 +57,15 @@ public class AccountController
     @PostMapping("/signUp")
     EntityModel<Account> signUp(@RequestBody Account account) {
         Account addedAccount = logic.signUp(account);
+        System.out.println(account.getUserId());
         return assembler.toModel(addedAccount);
     }
 
-    @GetMapping("/account/{username}")
-    EntityModel<Account> getAccount(@PathVariable String username)
+    @GetMapping("/account/{userId}")
+    EntityModel<Account> getAccount(@PathVariable int userId)
     {
-        Account account = logic.getAccountFromDatabase(username);
+        Account account = logic.get(userId);
+        System.out.println(userId);
         return assembler.toModel(account);
     }
 
