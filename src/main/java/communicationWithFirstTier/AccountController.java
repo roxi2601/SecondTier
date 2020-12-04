@@ -27,7 +27,7 @@ public class AccountController
         this.assembler = assembler;
     }
 
-    @DeleteMapping("/account/{id}")
+    @DeleteMapping("/accounts/{id}")
     void  delete(@PathVariable int userId)
     {
         logic.deleteAccount(userId);

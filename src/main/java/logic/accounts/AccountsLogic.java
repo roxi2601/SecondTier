@@ -85,9 +85,6 @@ public class AccountsLogic
     {
         return communicator.saveAccountInDatabase(newAccount);
     }
-    /*public Account deleteAccountFromDatabase(String username)
-    {
-        return communicator.deleteAccountFromDatabase(username);
-    }*/
+
 }
 
