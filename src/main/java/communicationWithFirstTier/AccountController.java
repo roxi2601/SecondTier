@@ -4,15 +4,9 @@ package communicationWithFirstTier;
 import logic.accounts.AccountsLogic;
 
 import org.springframework.hateoas.EntityModel;
-import org.springframework.hateoas.IanaLinkRelations;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import shared.Account;
-import shared.Artwork;
 
-import javax.websocket.server.PathParam;
-import java.util.List;
-import java.util.stream.Collectors;
 
 
 @RestController
@@ -27,11 +21,18 @@ public class AccountController
         this.assembler = assembler;
     }
 
-    @DeleteMapping("/accounts/{id}")
+    @DeleteMapping("/accounts/{userId}")
     void  delete(@PathVariable int userId)
     {
         logic.deleteAccount(userId);
     }
+    @PutMapping ("/editAccount")
+    EntityModel<Account> update(@RequestBody Account account)
+    {
+        Account editedAccount = logic.editAccount(account);
+        return assembler.toModel(editedAccount);
+    }
+
 
     @PostMapping("/signUp")
     EntityModel<Account> signUp(@RequestBody Account account) {
