@@ -62,7 +62,7 @@ public class Communicator
 
 
 
-  public Artwork get(int id)
+  public Artwork  get(int id)
   {
     try
     {
@@ -98,7 +98,6 @@ public class Communicator
     catch(Exception e){
       e.printStackTrace();
     }
-
     return  null;
   }
   public List<Artwork> getAllArtworks()
@@ -153,6 +152,7 @@ public class Communicator
   }
   return  null;
 }
+
   public void deleteArtwork(int id)
   {
     try{

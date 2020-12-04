@@ -56,4 +56,10 @@ List<EntityModel<Artwork>> all()
 {
   logic.deleteArtwork(id);
 }
+@PutMapping("/editArtwork")
+EntityModel<Artwork> editOne(@RequestBody Artwork editedArtwork)
+{
+  Artwork artwork = logic.editArtwork(editedArtwork);
+  return assembler.toModel(artwork);
+}
 }
