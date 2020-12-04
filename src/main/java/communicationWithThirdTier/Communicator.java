@@ -152,6 +152,7 @@ public class Communicator
   }
   return  null;
 }
+
   public void deleteArtwork(int id)
   {
     try{
