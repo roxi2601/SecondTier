@@ -17,6 +17,7 @@ public class ArtworkModelAssembler implements RepresentationModelAssembler<Artwo
   {
     return EntityModel.of(entity,
         linkTo(methodOn(ArtworkController.class).one(entity)).withSelfRel(),
+        linkTo(methodOn(ArtworkController.class).editOne(entity)).withSelfRel(),
         linkTo(methodOn(ArtworkController.class).all()).withRel("artworks"));
   }
 }

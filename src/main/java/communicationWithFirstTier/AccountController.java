@@ -44,7 +44,7 @@ public class AccountController
     EntityModel<Account> getAccount(@PathVariable int userId)
     {
         Account account = logic.get(userId);
-        System.out.println(userId);
+        System.out.println(account.getUserId());
         return assembler.toModel(account);
     }
 
