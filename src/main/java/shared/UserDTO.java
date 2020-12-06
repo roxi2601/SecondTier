@@ -9,20 +9,24 @@ public class UserDTO implements Serializable {
 	private String password;
 	private int securityLevel;
 
+
 	public UserDTO(int userId, String username, String password, int securityLevel) {
 		this.userId = userId;
 		this.username = username;
 		this.password = password;
 		this.securityLevel = securityLevel;
+
 	}
 
 	public UserDTO(User user)  {
-		this(user.getUserId(), user.getUsername(), user.getPassword(), user.getSecurityLevel());
+		this(user.getUserId(), user.getUsername(), user.getPassword(),
+				user.getSecurityLevel());
 	}
 
-	public int getId() {
+	public int getUserId() {
 		return userId;
 	}
+
 
 	public String getPassword() {
 		return password;
@@ -35,4 +39,5 @@ public class UserDTO implements Serializable {
 	public String getUsername() {
 		return username;
 	}
+
 }

@@ -45,7 +45,7 @@ public class Communicator
       UserDTO userDto = (UserDTO)inFromServer.readObject();
       User user = new User();
       if(userDto !=null){
-        user.setUserId(userDto.getId());
+        user.setUserId(userDto.getUserId());
         user.setPassword(userDto.getPassword());
         user.setUsername(userDto.getUsername());
         user.setSecurityLevel(userDto.getSecurityLevel());
@@ -104,9 +104,12 @@ public class Communicator
   {
     List<Artwork> artworks = new ArrayList<>();
     try{
+
       Request request = new Request("getArtworks",null);
       outToServer.writeObject(request);
-      List<ArtworkDTO> dtos = (List<ArtworkDTO>)inFromServer.readObject();
+      Object obj  =inFromServer.readObject();
+      System.out.println(obj instanceof List);
+      List<ArtworkDTO> dtos = (List<ArtworkDTO>)obj;
       for (ArtworkDTO dto :dtos)
       {
         artworks.add(new Artwork(dto));
@@ -136,6 +139,32 @@ public class Communicator
   }
   return  null;
 }
+  public Account editAccount(Account account)
+  {
+    AccountDTO dto =new AccountDTO();
+    try{
+      AccountDTO dtoToSend = new AccountDTO(account);
+      System.out.println(dtoToSend.getFirstName());
+      Request request = new Request("editAccount",dtoToSend);
+      outToServer.writeObject(request);
+      Thread.sleep(500);
+       dto = (AccountDTO)inFromServer.readObject();
+
+      Account saved = new Account(dto);
+
+      if(saved.getUsername()!=null){
+        return saved;
+      }
+
+    }
+    catch(Exception e){
+      e.printStackTrace();
+    }
+    finally {
+      System.out.println(dto);
+    }
+    return  null;
+  }
   public Artwork editArtwork(Artwork artwork)
 {
   try{
@@ -185,22 +214,7 @@ public class Communicator
     return  null;
   }
 
-  public Account editAccount(Account account)
-  {
-    try{
-      AccountDTO dtoToSend = new AccountDTO(account);
-      Request request = new Request("editAccount",dtoToSend);
-      outToServer.writeObject(request);
-      AccountDTO dto = (AccountDTO)inFromServer.readObject();
-      Account saved = new Account(dto);
-      if(saved.getUsername()!=null)
-        return saved;
-    }
-    catch(Exception e){
-      e.printStackTrace();
-    }
-    return  null;
-  }
+
   public void deleteAccount(int userId)
   {
     try{

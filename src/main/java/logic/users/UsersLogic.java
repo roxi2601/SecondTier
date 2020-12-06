@@ -3,10 +3,6 @@ package logic.users;
 import communicationWithFirstTier.UserNotFoundException;
 import communicationWithThirdTier.Communicator;
 import shared.User;
-import shared.UserDTO;
-
-import java.io.IOException;
-import java.net.SocketException;
 
 public class UsersLogic
 {

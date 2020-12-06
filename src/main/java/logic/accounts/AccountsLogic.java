@@ -1,11 +1,7 @@
 package logic.accounts;
 import communicationWithFirstTier.AccountException;
-import communicationWithFirstTier.ArtworkException;
 import communicationWithThirdTier.Communicator;
 import shared.Account;
-import shared.Artwork;
-
-import java.util.List;
 
 
 public class AccountsLogic
@@ -46,13 +42,13 @@ public class AccountsLogic
         }
         catch(Exception e){
             e.printStackTrace();
-            throw new ArtworkException("Server error");
+            throw new AccountException("Server error");
         }
         if(editedAccount!= null)
         {
             return editedAccount;
         }
-        throw new ArtworkException("Could not edit account");
+        throw new AccountException("Could not edit account");
     }
 
     public void deleteAccount(int userId)

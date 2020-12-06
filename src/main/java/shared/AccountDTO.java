@@ -3,7 +3,7 @@ package shared;
 
 import java.io.Serializable;
 
-public class AccountDTO implements Serializable,IAccount {
+public class AccountDTO implements Serializable {
     private static final long serialVersionUID = 1L;
     private int userId;
     private String username;
@@ -13,6 +13,9 @@ public class AccountDTO implements Serializable,IAccount {
     private String lastName;
     private String description;
     private byte[] pictureBytes;
+
+    public AccountDTO() {
+    }
 
     public AccountDTO(int userId, String username, String password, String firstName,
                       String lastName, String description, byte[] pictureBytes, int securityLevel) {
@@ -62,5 +65,22 @@ public class AccountDTO implements Serializable,IAccount {
 
     public String getPassword() {
         return password;
+    }
+
+    public void setUserId(int userId) {
+        this.userId = userId;
+    }
+
+    @Override
+    public String toString() {
+        return "AccountDTO{" +
+                "userId=" + userId +
+                ", username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                ", securityLevel=" + securityLevel +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", description='" + description + '\'' +
+                '}';
     }
 }
