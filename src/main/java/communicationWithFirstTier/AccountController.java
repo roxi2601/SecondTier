@@ -24,13 +24,13 @@ public class AccountController
     {
         logic.deleteAccount(userId);
     }
+
     @PutMapping ("/editAccount")
     EntityModel<Account> update(@RequestBody Account account)
     {
         Account editedAccount = logic.editAccount(account);
         return assembler.toModel(editedAccount);
     }
-
 
     @PostMapping("/signUp")
     EntityModel<Account> signUp(@RequestBody Account account) {

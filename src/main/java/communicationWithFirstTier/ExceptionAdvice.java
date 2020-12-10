@@ -44,4 +44,11 @@ public class ExceptionAdvice
   {
     return ex.getMessage();
   }
+  @ResponseBody
+  @ExceptionHandler(ChatException.class)
+  @ResponseStatus(HttpStatus.NOT_FOUND)
+  String exceptionHandler(ChatException ex)
+  {
+    return ex.getMessage();
+  }
 }

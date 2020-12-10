@@ -1,6 +1,7 @@
 package communicationWithFirstTier;
 
 import logic.accounts.AccountsLogic;
+import logic.chats.ChatsLogic;
 import logic.offers.ArtworksLogic;
 import logic.users.UsersLogic;
 import org.springframework.context.annotation.Bean;
@@ -24,9 +25,16 @@ public class WebServiceConfig
   {
     return new AccountsLogic();
   }
+
   @Bean
   public ArtworksLogic ArtworksLogic() throws Exception
   {
     return new ArtworksLogic();
+  }
+
+  @Bean
+  public ChatsLogic ChatsLogic() throws Exception
+  {
+    return new ChatsLogic();
   }
 }

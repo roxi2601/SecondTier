@@ -2,6 +2,7 @@ package shared;
 
 
 import java.io.Serializable;
+import java.util.ArrayList;
 
 public class AccountDTO implements Serializable {
     private static final long serialVersionUID = 1L;
@@ -13,6 +14,7 @@ public class AccountDTO implements Serializable {
     private String lastName;
     private String description;
     private byte[] pictureBytes;
+    private ArrayList<String> messages;
 
     public AccountDTO() {
     }
@@ -27,6 +29,7 @@ public class AccountDTO implements Serializable {
         this.lastName = lastName;
         this.description = description;
         this.pictureBytes = pictureBytes;
+        messages = new ArrayList<>();
     }
 
     public AccountDTO(Account account) {
@@ -71,6 +74,13 @@ public class AccountDTO implements Serializable {
         this.userId = userId;
     }
 
+    public ArrayList<String> getChats() {
+        for (String message : messages){
+            System.out.println(message + "/n");
+        }
+        return messages;
+    }
+
     @Override
     public String toString() {
         return "AccountDTO{" +
@@ -81,6 +91,7 @@ public class AccountDTO implements Serializable {
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
                 ", description='" + description + '\'' +
+                ", messages='" + messages + '\'' +
                 '}';
     }
 }

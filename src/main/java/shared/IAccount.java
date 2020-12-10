@@ -1,5 +1,7 @@
 package shared;
 
+import java.util.ArrayList;
+
 public interface IAccount {
     public int getUserId();
 
@@ -16,4 +18,6 @@ public interface IAccount {
     public byte[] getPictureBytes();
 
     public String getPassword();
+
+    public ArrayList<String> getChats();
 }

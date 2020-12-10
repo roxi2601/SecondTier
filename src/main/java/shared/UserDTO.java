@@ -27,7 +27,6 @@ public class UserDTO implements Serializable {
 		return userId;
 	}
 
-
 	public String getPassword() {
 		return password;
 	}
