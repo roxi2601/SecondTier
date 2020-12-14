@@ -20,13 +20,13 @@ public class ChatController
         this.assembler = chatAssembler;
         this.logic = chatsLogic;
     }
-
-   /*  @GetMapping("/users/{username}")
-    EntityModel<User> getUsername(@PathVariable String username)
+/*
+   @GetMapping("/chats/{username}")
+    EntityModel<Message> getUsername(@PathVariable String username)
     {
         User user = logic.getUsername(username);
         System.out.println(user.getUsername());
-       return assembler.toModel(user);
+       return assembler.toModel(user); //TODO help here please
     }*/
 
     @GetMapping("/chats")

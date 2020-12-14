@@ -3,7 +3,6 @@ package logic.chats;
 import communicationWithFirstTier.AccountException;
 import communicationWithFirstTier.ChatException;
 import communicationWithThirdTier.Communicator;
-import shared.Account;
 import shared.Message;
 import shared.User;
 
