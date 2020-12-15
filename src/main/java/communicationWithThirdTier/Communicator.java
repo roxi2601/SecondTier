@@ -151,28 +151,31 @@ public class Communicator {
         return null;
     }
 
-    public Account editAccount(Account account) {
-        AccountDTO dto = new AccountDTO();
-        try {
+    public Account editAccount(Account account)
+    {
+        AccountDTO dto =new AccountDTO();
+        try{
             AccountDTO dtoToSend = new AccountDTO(account);
             System.out.println(dtoToSend.getFirstName());
-            Request request = new Request("editAccount", dtoToSend);
+            Request request = new Request("editAccount",dtoToSend);
             outToServer.writeObject(request);
             Thread.sleep(500);
-            dto = (AccountDTO) inFromServer.readObject();
+            dto = (AccountDTO)inFromServer.readObject();
 
             Account saved = new Account(dto);
 
-            if (saved.getUsername() != null) {
+            if(saved.getUsername()!=null){
                 return saved;
             }
 
-        } catch (Exception e) {
+        }
+        catch(Exception e){
             e.printStackTrace();
-        } finally {
+        }
+        finally {
             System.out.println(dto);
         }
-        return null;
+        return  null;
     }
 
     public Message updateChat(Message message) {

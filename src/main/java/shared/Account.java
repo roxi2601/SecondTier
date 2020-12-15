@@ -2,10 +2,9 @@ package shared;
 
 import javax.persistence.Entity;
 import java.io.Serializable;
-import java.util.ArrayList;
 
 @Entity
-public class Account implements  Serializable, IAccount  {
+public class Account implements  Serializable,IAccount  {
     private int userId;
     private String username;
     private String password;
@@ -14,24 +13,22 @@ public class Account implements  Serializable, IAccount  {
     private String lastName;
     private String description;
     private byte[] pictureBytes;
-    private ArrayList<String> messages;
 
 
     public Account()
     {}
 
     public Account(int userId, String username, String password,int securityLevel, String firstName,
-                String lastName, String description, byte[] pictureBytes)
+                   String lastName, String description, byte[] pictureBytes)
     {
         this.userId = userId;
         this.password = password;
         this.username = username;
-        this.securityLevel = securityLevel;
+        this.securityLevel =securityLevel;
         this.firstName = firstName;
         this.lastName = lastName;
         this.description = description;
         this.pictureBytes = pictureBytes;
-        messages = new ArrayList<>();
     }
     public Account(AccountDTO accountDTO)
     {
@@ -112,10 +109,4 @@ public class Account implements  Serializable, IAccount  {
         this.username = username;
     }
 
-    public ArrayList<String> getChats(){
-        for (String message : messages){
-            System.out.println(message + "/n");
-        }
-        return messages;
-    }
 }

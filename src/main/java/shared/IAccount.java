@@ -19,5 +19,5 @@ public interface IAccount {
 
     public String getPassword();
 
-    public ArrayList<String> getChats();
+
 }
