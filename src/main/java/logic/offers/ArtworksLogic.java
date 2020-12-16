@@ -65,7 +65,7 @@ public class ArtworksLogic
   {
     Artwork artwork;
     try{
-      artwork = communicator.get(id);
+      artwork =  communicator.get(id);
     }
     catch (Exception e)
     {

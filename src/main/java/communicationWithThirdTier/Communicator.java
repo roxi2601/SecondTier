@@ -26,7 +26,7 @@ public class Communicator {
 
     private Communicator() throws IOException {
 
-        Socket socket = new Socket("localhost", 1098);
+        Socket socket = new Socket("192.168.8.105", 1098);
 
         outToServer = new ObjectOutputStream(socket.getOutputStream());
         inFromServer = new ObjectInputStream(socket.getInputStream());
