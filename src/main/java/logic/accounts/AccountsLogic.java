@@ -1,7 +1,11 @@
 package logic.accounts;
 import communicationWithFirstTier.AccountException;
+import communicationWithFirstTier.ArtworkException;
 import communicationWithThirdTier.Communicator;
 import shared.Account;
+import shared.Artwork;
+
+import java.util.List;
 
 
 public class AccountsLogic
@@ -81,6 +85,7 @@ public class AccountsLogic
     {
         return communicator.saveAccountInDatabase(newAccount);
     }
+
 
 }
 

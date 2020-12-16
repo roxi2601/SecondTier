@@ -1,6 +1,5 @@
 package shared;
 
-
 import java.io.Serializable;
 
 public class AccountDTO implements Serializable {

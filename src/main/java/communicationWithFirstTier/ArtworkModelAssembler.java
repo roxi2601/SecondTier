@@ -14,8 +14,8 @@ public class ArtworkModelAssembler implements RepresentationModelAssembler<Artwo
   @Override public EntityModel<Artwork> toModel(Artwork artwork)
   {
     return EntityModel.of(artwork,
-        linkTo(methodOn(ArtworkController.class).oneArtwork(artwork)).withSelfRel(),
-        linkTo(methodOn(ArtworkController.class).editOneArtwork(artwork)).withSelfRel(),
-        linkTo(methodOn(ArtworkController.class).allArtworks()).withRel("artworks"));
+            linkTo(methodOn(ArtworkController.class).oneArtwork(artwork)).withSelfRel(),
+            linkTo(methodOn(ArtworkController.class).editOneArtwork(artwork)).withSelfRel(),
+            linkTo(methodOn(ArtworkController.class).allArtworks()).withRel("artworks"));
   }
 }

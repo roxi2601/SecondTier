@@ -69,20 +69,25 @@ public class Communicator {
         return null;
     }
 
-    public Account getAccountFromDatabase(int userId) {
-        try {
+    public Account getAccountFromDatabase(int userId)
+    {
+        try
+        {
             Request request = new Request("getAccount", userId);
             outToServer.writeObject(request);
+            Thread.sleep(500);
             AccountDTO dto = (AccountDTO) inFromServer.readObject();
-            if (dto == null) {
-                return null;
+            if (dto == null)
+            {
+                return  null;
             }
             System.out.println(dto.getUserId());
             return new Account(dto);
-        } catch (Exception e) {
+        }
+        catch(Exception e){
             e.printStackTrace();
         }
-        return null;
+        return  null;
     }
 
     public List<Artwork> getAllArtworks() {
@@ -235,28 +240,35 @@ public class Communicator {
         }
     }
 
-    public Account saveAccountInDatabase(Account newAccount) {
+    public Account saveAccountInDatabase(Account newAccount){
         AccountDTO accountDto;
-        try {
+        try{
             AccountDTO dto = new AccountDTO(newAccount);
-            Request request = new Request("saveUser", dto);
+            Request request = new Request("saveUser",dto);
             outToServer.writeObject(request);
-            accountDto = (AccountDTO) inFromServer.readObject();
-            if (accountDto == null) {
+            accountDto = (AccountDTO)inFromServer.readObject();
+            if(accountDto==null)
+            {
                 throw new Exception("Account received from third tier is null");
             }
             return new Account(accountDto);
-        } catch (Exception e) {
+        }
+        catch(Exception e)
+        {
             e.printStackTrace();
         }
-        return null;
+        return  null;
     }
 
-    public void deleteAccount(int userId) {
-        try {
-            Request request = new Request("deleteAccount", userId);
+
+    public void deleteAccount(int userId)
+    {
+        try{
+            Request request = new Request("deleteAccount",userId);
             outToServer.writeObject(request);
-        } catch (Exception e) {
+        }
+        catch (Exception e)
+        {
             e.printStackTrace();
         }
     }
