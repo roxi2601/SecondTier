@@ -54,7 +54,7 @@ public class Communicator {
         return null;
     }
 
-    public Artwork getArtwork(int id) {
+    public Artwork get(int id) {
         try {
             Request request = new Request("getArtwork", id);
             outToServer.writeObject(request);
@@ -107,7 +107,7 @@ public class Communicator {
         List<Message> messages = new ArrayList<>();
         try {
 
-            Request request = new Request("getChats", null);
+            Request request = new Request("getAllChats", null);
             outToServer.writeObject(request);
             Object obj = inFromServer.readObject();
             System.out.println(obj instanceof List);

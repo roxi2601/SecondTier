@@ -23,7 +23,7 @@ public class ArtworkController
   }
 
   @PostMapping("/addArtwork")
-  EntityModel<Artwork> oneArtwork(@RequestBody Artwork artwork)
+  EntityModel<Artwork> one(@RequestBody Artwork artwork)
   {
     Artwork newArtwork = logic.saveArtwork(artwork);
     return assembler.toModel(newArtwork);
@@ -37,26 +37,26 @@ public class ArtworkController
     return CollectionModel.of(artworks,linkTo(methodOn(ArtworkController.class).all()).withSelfRel());
   }*/
 @GetMapping("/artworks")
-List<EntityModel<Artwork>> allArtworks()
+List<EntityModel<Artwork>> all()
 {
-  return logic.getAllArtworks().stream().map(assembler::toModel).collect(
+  return logic.getAll().stream().map(assembler::toModel).collect(
       Collectors.toList());
 }
 
 @GetMapping("/artworks/{id}")
-    EntityModel<Artwork> oneArtwork(@PathVariable int id)
+    EntityModel<Artwork> one(@PathVariable int id)
 {
-  Artwork artwork = logic.getArtwork(id);
+  Artwork artwork = logic.get(id);
   return assembler.toModel(artwork);
 }
 @DeleteMapping("/artworks/{id}")
-  void deleteArtwork(@PathVariable int id)
+  void delete(@PathVariable int id)
 {
   logic.deleteArtwork(id);
 }
 
 @PutMapping("/editArtwork")
-EntityModel<Artwork> editOneArtwork(@RequestBody Artwork editedArtwork)
+EntityModel<Artwork> editOne(@RequestBody Artwork editedArtwork)
 {
   Artwork artwork = logic.editArtwork(editedArtwork);
   return assembler.toModel(artwork);

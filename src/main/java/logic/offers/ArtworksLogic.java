@@ -51,7 +51,7 @@ public class ArtworksLogic
   {
     communicator.deleteArtwork(id);
   }
-  public List<Artwork> getAllArtworks()
+  public List<Artwork> getAll()
   {
     try{
       return communicator.getAllArtworks();
@@ -61,11 +61,11 @@ public class ArtworksLogic
       throw new ArtworkException("Server error");
     }
   }
-  public Artwork getArtwork(int id)
+  public Artwork get(int id)
   {
     Artwork artwork;
     try{
-      artwork = communicator.getArtwork(id);
+      artwork = communicator.get(id);
     }
     catch (Exception e)
     {
